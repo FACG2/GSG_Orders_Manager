@@ -26,7 +26,22 @@ const publicHandler = (req, res) => {
         }
     });
 }
-      
+
+  const login=(req ,res)=>{
+    //checkMemberCredits a function inside function.js file the make aquire to
+    //checke if the member exist and return true or fals
+    checkMemberCredits(email, (isExist)=>{
+      if(isExist){
+        res.writeHead(200, {'content-type': 'application/json'});
+        res.end(JSON.stringify({ state : isExist}));
+      }
+      else {
+        res.writeHead(404, {'content-type': 'application/json'});
+        res.end(JSON.stringify({ state : isExist}));
+      }
+    });
+
+  }
 
 const notFound = (req,res) => {
   res.writeHead(404, {'content-type': 'text/plain'});
