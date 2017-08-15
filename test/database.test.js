@@ -1,6 +1,7 @@
 const test = require('tape');
 const {
-  checkMemberCredits
+  checkMemberCredits,
+  getOrderList
 } = require('../src/functions.js');
 
 test('Test login query', (t) => {
@@ -16,6 +17,13 @@ test('Test login query', (t) => {
   })
 });
 
-// test('Testing the orderList Query',(t)=>{
-//
-// })
+test('Testing the orderList Query',(t)=>{
+  getOrderList(1,(err , data)=>{
+    if (err) {
+      t.notOk(err);
+    } else {
+      t.equal(data.length , 4 , 'Should return list of orders')
+      t.end();
+    }
+  })
+})
