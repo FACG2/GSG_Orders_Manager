@@ -1,0 +1,32 @@
+{
+  "name": "gsg_orders_manager",
+  "version": "1.0.0",
+  "description": "week 6 database project for GSG orders management",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "tape test/*.test.js | tap-spec",
+    "coverage": "tape ./node_modules/.bin/istanbul cover tests/*.test.js"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FACG2/GSG_Orders_Manager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FACG2/GSG_Orders_Manager/issues"
+  },
+  "homepage": "https://github.com/FACG2/GSG_Orders_Manager#readme",
+  "devDependencies": {
+    "istanbul": "^0.4.5",
+    "shot": "^3.4.2",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.8.0"
+  },
+  "dependencies": {
+    "env": "0.0.2",
+    "pg": "^7.1.2"
+  }
+}
