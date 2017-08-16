@@ -22,7 +22,7 @@ CREATE TABLE order_list (
 
 CREATE TABLE order_pp (
   id SERIAL PRIMARY KEY NOT NULL,
-  type TEXT NOT NULL,
+  foodtype TEXT NOT NULL,
   price INTEGER NOT NULL,
   user_id INTEGER REFERENCES members(id),
   orderlist INTEGER REFERENCES order_list(id)
@@ -30,21 +30,21 @@ CREATE TABLE order_pp (
 
 
 INSERT INTO members (name, email, sex) VALUES
-('Hana Jebril', 'hanahana.2000@hotmail.com', 'F'),
-('Mahmoud Alwadia', 'mahmoud.alwadia@gmail.com', 'M'),
-('Qamar Alfalojy', 'qmff23@gmail.com', 'F'),
+('Abdallah Al-Halees', 'abdallah.halees@gmail.com', 'M'),
 ('Ahmed Ajour', 'ahmed.ajourr@gmail.com', 'M'),
 ('Eslam Hugair', 'iah-93@hotmail.com', 'M'),
-('Ghadeer Abdel-Nabi', 'eng.ghadeer93@gmail.com', 'F'),
 ('Mahmoud Aldahdouh', 'mahmod_mne@hotmail.com', 'M'),
-('Abdallah Al-Halees', 'abdallah.halees@gmail.com', 'M'),
-('Moath Alnajjar', 'moaalnajjar@gmail.com', 'M'),
 ('Mahmoud Almadhoun', 'mrm7moud@hotmail.com', 'M'),
+('Mahmoud Alwadia', 'mahmoud.alwadia@gmail.com', 'M'),
+('Moath Alnajjar', 'moaalnajjar@gmail.com', 'M'),
 ('Samer El-Aila', 'samer-elaila@live.com', 'M'),
+('Walid Almeshwakhi', 'waleedmash2@gmail.com', 'M'),
+('Hana Jebril', 'hanahana.2000@hotmail.com', 'F'),
+('Qamar Alfalojy', 'qmff23@gmail.com', 'F'),
+('Ghadeer Abdel-Nabi', 'eng.ghadeer93@gmail.com', 'F'),
 ('Aia Abu Laila', 'aaa_2008azhar@hotmail.com', 'F'),
 ('Sohad Dader', 'sohadwd9@gmail.com', 'F'),
 ('kefah elhelou', 'kelhelouwork@gmail.com', 'F'),
-('Salwa Alnazly', 'salwanazly95@gmail.com', 'F'),
-('Walid Almeshwakhi', 'waleedmash2@gmail.com', 'M');
+('Salwa Alnazly', 'salwanazly95@gmail.com', 'F');
 
 COMMIT;
