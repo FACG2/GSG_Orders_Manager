@@ -1,3 +1,5 @@
+const dateFormat = require('x-date');
+
 const client = require('../database/db_connection.js');
 //modify the require statment to correctly require the connection
 
@@ -16,9 +18,9 @@ const checkMemberCredits = (email,name ,cb) => {
   //closing the pool after finshing
 
 }
-const orderListObject=(orderListId, cb)=>{
+const orderListObject=(today, cb)=>{
   let orderlistObj={};
-  getOrderList(orderListId , (err , res)=>{
+  getOrderList(today , (err , res)=>{
     if(err){
       cb(err);
     }else{
@@ -30,7 +32,7 @@ const orderListObject=(orderListId, cb)=>{
             cb(err)
           }else{
             orderlistObj.Dman=name[0].name;
-            getOrders(orderListId , (err ,olist)=>{ ////////
+            getOrders(res[0].id, (err ,olist)=>{
               if(err){
                 cb(err)
               }else{
@@ -43,11 +45,57 @@ const orderListObject=(orderListId, cb)=>{
     }
   })
 }
-const getOrderList=(id , cb)=>{
+const checkOrderList = (today, cb) =>{
+  getOrderList(today, (err, res) =>{
+    if (err){
+      cb(err)
+    } else {
+      if (res[0] !== null) {
+        orderListObject(today, (err, object)=>{
+          if(err){
+            cb(err)
+          }else{
+            cb(null, object);
+          }
+        })
+      } else {
+        createOrderList(today, (err, object)=>{
+          if(err){
+            cb(err)
+          }else{
+            cb(null, object)
+          }
+        })
+      }
+    }
+  })
+}
+
+const createOrderList = (today, cb) =>{
+  const sql = {
+    text: 'INSERT INTO order_list (state, total, dman_id, dateorder) VALUES ($1, $2, $3, $4);',
+    values: [true, 0, genarateDmanId(), new Date().format('mm-dd')]
+  }
+  client.query(sql ,(err ,data)=>{
+    if (err) {
+      cb(err)
+    } else {
+      orderListObject(today, (err, object) =>{
+        if (err) {
+          cb(err)
+        } else {
+          cb(null, object)
+        }
+      })
+    }
+  })
+}
+
+const getOrderList=(today , cb)=>{
   const sql = {
     //SELECT state , total , name as member ,type, price ,dman_id  FROM order_pp join order_list ON order_pp.orderlist = order_list.id JOIN members ON members.id = order_pp.user_id  where order_list.id
-    text: 'SELECT * FROM order_list WHERE id=$1',
-    values: [id]
+    text: 'SELECT * FROM order_list WHERE DateOrder=$1',
+    values: [today]
   }
   client.query(sql, (err, res) => {
     if (err) {
@@ -82,6 +130,9 @@ const getDeleverManName=(DmanId ,cb)=>{
       cb(null, res.rows)
     }
   })
+}
+const genarateDmanId=(){
+
 }
 module.exports = {
   checkMemberCredits: checkMemberCredits,
