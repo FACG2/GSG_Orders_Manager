@@ -1,13 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>GSG Food Manager</title>
-    <link rel="stylesheet" href="./public/css/style.css">
-  </head>
-  <body>
+<html>
 
+<head>
+    <meta charset="utf-8">
+    <title>GSG Orders Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./public/css/style.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">GSG Orders Manager</a>
+        </div>
+    </nav>
+    <form class="form" action="/login" method="post">
+        <label for="usersName"></label>
+          <select id="usersName" placeholder="Your Name" name="name" class="label">
+            <option value=''>Select Your Name</option>
+            <option>Abdallah Al-Halees</option>
+            <option>Ahmed Ajour</option>
+            <option>Eslam Hugair</option>
+            <option>Mahmoud Aldahdouh</option>
+            <option>Mahmoud Almadhoun</option>
+            <option>Mahmoud Alwadia</option>
+            <option>Moath Alnajjar</option>
+            <option>Samer El-Aila</option>
+            <option>Walid Almeshwakhi</option>
+            <option>Hana Jebril</option>
+            <option>Qamar Alfalojy</option>
+            <option>Ghadeer Abdel-Nabi</option>
+            <option>Aia Abu Laila</option>
+            <option>Sohad Dader</option>
+            <option>kefah elhelou</option>
+            <option>Salwa Alnazly</option>
+          </select>
+        <input type="text" name="Email" value="" placeholder="Email">
+        <button type="submit" name="button">LOGIN</button>
+    </form>
+    <div class="table-container">
+        <table id="users-table">
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Price</th>
+            </tr>
+            <tr>
+                <td>Eslam</td>
+                <td>falafel</td>
+                <td>2</td>
+           </tr>
+
+        </table>
+    </div>
     <script type="text/javascript" src = "./public/js/request.js"></script>
     <script type="text/javascript" src = "./public/js/index.js"></script>
-  </body>
+</body>
+
 </html>

@@ -26,7 +26,7 @@ const orderListObject=(today, cb)=>{
     }else{
         orderlistObj.state=res[0].state;
         orderlistObj.total=res[0].total;
-
+        orderlistObj.id=res[0].id;
         getDeleverManName(res[0].dman_id ,(err , name)=>{
           if(err){
             cb(err)
@@ -72,23 +72,29 @@ const checkOrderList = (today, cb) =>{
 }
 
 const createOrderList = (today, cb) =>{
-  const sql = {
-    text: 'INSERT INTO order_list (state, total, dman_id, dateorder) VALUES ($1, $2, $3, $4);',
-    values: [true, 0, genarateDmanId(), new Date().format('mm-dd')]
-  }
-  client.query(sql ,(err ,data)=>{
-    if (err) {
-      cb(err)
-    } else {
-      orderListObject(today, (err, object) =>{
+  genarateDmanId((err ,id)=>{
+    if(err){
+
+    }else {
+      const sql = {
+        text: 'INSERT INTO order_list (state, total, dman_id, dateorder) VALUES ($1, $2, $3, $4);',
+        values: [true, 0, id, today]
+      }
+      client.query(sql ,(err ,data)=>{
         if (err) {
           cb(err)
         } else {
-          cb(null, object)
+          orderListObject(today, (err, object) =>{
+            if (err) {
+              cb(err)
+            } else {
+              cb(null, object)
+            }
+          })
         }
       })
     }
-  })
+  });
 }
 
 const getOrderList=(today , cb)=>{
@@ -107,7 +113,7 @@ const getOrderList=(today , cb)=>{
 }
 const getOrders=(orderListId , cb)=>{
   const sql = {
-    text: 'SELECT * FROM order_pp WHERE orderlist=$1',
+    text: 'SELECT name,foodtype, price, user_id FROM order_pp  JOIN members ON members.id = order_pp.user_id where orderlist=$1',
     values: [orderListId]
   }
   client.query(sql, (err, res) => {
@@ -131,9 +137,22 @@ const getDeleverManName=(DmanId ,cb)=>{
     }
   })
 }
-const genarateDmanId=(){
-
+const genarateDmanId = (cb)=> {
+  const sql = {
+    text: 'SELECT * FROM (SELECT * FROM members ORDER BY id LIMIT 9) AS random9 ORDER BY random() LIMIT 1;'
+  }
+  client.query(sql.text, (err, res) => {
+    if (err) {
+      cb(err)
+    } else {
+      cb(null ,res.rows[0].id)
+    }
+  })
 }
+
+genarateDmanId((err ,res)=>{
+  console.log(res);
+})
 module.exports = {
   checkMemberCredits: checkMemberCredits,
   orderListObject: orderListObject
