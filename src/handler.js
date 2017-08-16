@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const {checkMemberCredits}=require('./functions.js')
 const home = (req,res) => {
       fs.readFile(path.join(__dirname,'..','public','index.html'),(err,data) =>{
         if(err){
@@ -27,7 +28,7 @@ const publicHandler = (req, res) => {
     });
 }
 
-  const login=(req ,res)=>{
+const login=(req ,res)=>{
     //checkMemberCredits a function inside function.js file the make aquire to
     //checke if the member exist and return true or fals
     checkMemberCredits(email, (isExist)=>{
