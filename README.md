@@ -32,8 +32,18 @@ Make an APP for managing the food orders for the Code Academy 16 members.
 
 ### System Structure
 
-![pic1]()
+![pic1](https://github.com/FACG2/GSG_Orders_Manager/blob/master/public/img/SKM_36717081620510.jpg?raw=true)
 
-![SCHEMA]()
+### SCHEMA Diagram
 
-![ER Digram]()
+![SCHEMA](https://github.com/FACG2/GSG_Orders_Manager/blob/master/public/img/SKM_36717081620470.jpg?raw=true)
+
+
+### ER Digram
+![ER Digram](https://github.com/FACG2/GSG_Orders_Manager/blob/master/public/img/SKM_36717081620500.jpg?raw=true)
+
+## Team :sunglasses: :
+* [Sohad](http://github.com/Sohadwd)
+* [Qamer](http://github.com/Qamar-93)
+* [Eslam](http://github.com/Eslam3bed)
+* [Mahmoud](http://github.com/mrm7moud)
