@@ -5,7 +5,8 @@ const {
   getOrderList,
   getDeleverManName,
   getOrders,
-  orderListObject
+  orderListObject,
+  addOrder
 } = require('../src/functions.js');
 
 test('Test login query', (t) => {
@@ -22,11 +23,11 @@ test('Test login query', (t) => {
 });
 
 test('Testing the orderList Query',(t)=>{
-  getOrderList(2,(err , data)=>{
+  getOrderList(8,(err , data)=>{
     if (err) {
       t.notOk(err);
     } else {
-      t.equal(data[0].id , 2 , 'Object id Should be the same as queried ')
+      t.equal(data.length , 3 , 'Object length Should be the same as queried ')
       t.end();
     }
   })
@@ -47,14 +48,14 @@ test('Testing the getOrders function Query',(t)=>{
     if (err) {
       t.notOk(err);
     } else {
-      t.equal(data.length ,4 , 'Object length Should be the same as the number of the orders ')
+      t.equal(data.length ,21, 'Object length Should be the same as the number of the orders ')
       t.end();
     }
   })
 });
-// Testing orderListObject
+///////Testing orderListObject
 test('Testing the orderListObject function Query',(t)=>{
-  orderListObject(2,(err , data) => {
+  orderListObject(8,(err , data) => {
     if (err) {
       t.notOk(err);
     } else {
@@ -62,4 +63,31 @@ test('Testing the orderListObject function Query',(t)=>{
       t.end();
     }
   })
+});
+
+///////////////// Testing addOrder
+test('Testing the getOrders function Query',(t)=>{
+  let dataLength=0;
+  getOrders(2,(err , data)=>{
+    if (err) {
+      t.notOk(err);
+    } else {
+      dataLength=data.length;
+    }
+  addOrder(2,'sandwich',4,11, (err,res)=>{
+    if(err){
+      t.notOk(err);
+    }
+    else {
+      getOrders(2,(err , data2)=>{
+        if (err) {
+          t.notOk(err);
+        } else {
+      t.equal(data2.length,dataLength+1,'The new length should be greater by 1');
+      t.end();
+    }
+  });
+}
+});
+  });
 });
