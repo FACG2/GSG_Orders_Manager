@@ -3,10 +3,10 @@ const dateFormat = require('x-date');
 const client = require('../database/db_connection.js');
 //modify the require statment to correctly require the connection
 
-const checkMemberCredits = (email, cb) => {
+const checkMemberCredits = (body, cb) => {
   const sql = {
-    text: 'SELECT * FROM members where email= $1',
-    values: [email]
+    text: 'SELECT * FROM members where email= $1 and name=$2',
+    values: [body.email,body.name ]
   }
   client.query(sql, (err, res) => {
     if (err) {
@@ -123,7 +123,7 @@ const checkOrderList = (today, cb) =>{
 const createOrderList = (today, cb) =>{
   const sql = {
     text: 'INSERT INTO order_list (state, total, dman_id, dateorder) VALUES ($1, $2, $3, $4);',
-    values: [true, 0, genarateDmanId(), new Date().format('mm-dd')]
+    values: [true, 0, genarateDmanId(), today]
   }
   client.query(sql ,(err ,data)=>{
     if (err) {
