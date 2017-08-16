@@ -7,8 +7,4 @@ if (!process.env.DB_URL) {
 
 const pool = new Pool ({ connectionString: process.env.DB_URL });
 
-// pool.query('SELECT * FROM members where name= $1','iah-93@hotmail.com',(data)=>{
-//   console.log(data.rows);
-// })
-
 module.exports = pool;
