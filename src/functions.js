@@ -25,12 +25,11 @@ const orderListObject=(orderListId, cb)=>{
         orderlistObj.state=res[0].state;
         orderlistObj.total=res[0].total;
 
-        getDeleverManName(res[0].dman_id ,(err , name)=>{
           if(err){
             cb(err)
           }else{
             orderlistObj.Dman=name[0].name;
-            getOrders(orderListId , (err ,olist)=>{
+            getOrders(orderListId , (err ,olist)=>{ ////////
               if(err){
                 cb(err)
               }else{
