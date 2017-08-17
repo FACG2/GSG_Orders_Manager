@@ -3,11 +3,11 @@ const handlers = require('./handler.js');
 const router = (req, res) => {
   // const url = req.url.split('/')[0];
   const url = '/' + req.url.split('/')[1];
-let handle = {
+  let handle = {
     '/': handlers.home,
     '/public':handlers.publicHandler,
     '/login': handlers.login,
-    '/newOrder': handlers.addOrder
+    '/newOrder': handlers.createOrder
   }[url];
 
  handle = handle ? handle : handlers.notFound;

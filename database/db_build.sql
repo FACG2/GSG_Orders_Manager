@@ -46,5 +46,14 @@ INSERT INTO members (name, email, sex) VALUES
 ('Sohad Dader', 'sohadwd9@gmail.com', 'F'),
 ('kefah elhelou', 'kelhelouwork@gmail.com', 'F'),
 ('Salwa Alnazly', 'salwanazly95@gmail.com', 'F');
+<<<<<<< HEAD
 
+
+INSERT INTO order_list (state,total,Dman_id,DateOrder) VALUES
+(false, 30 , 4 , 8);
+=======
+>>>>>>> 4933ec8b1e86ea86844c6fe812795bd08112af26
+
+INSERT INTO order_pp (foodtype,price,user_id,orderlist) VALUES
+('sand',10,3,1);
 COMMIT;

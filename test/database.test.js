@@ -1,3 +1,4 @@
+
 const util = require('util');
 const test = require('tape');
 const {
@@ -12,6 +13,7 @@ const {
 test('Test login query', (t) => {
   const email = "iah-93@hotmail.com";
   checkMemberCredits(email, (err, data) => {
+    console.log(err);
     if (err) {
       t.notOk(err);
     } else {
