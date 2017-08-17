@@ -21,7 +21,6 @@ const home = (req,res) => {
 
 const publicHandler = (req, res) => {
     let ext = req.url.split('.')[1];
-    console.log(path.join(__dirname, '..', req.url));
     fs.readFile(path.join(__dirname, '..', req.url), (error, data) => {
         if (error) {
             res.writeHead(404, {'content-type': 'text/plain'});

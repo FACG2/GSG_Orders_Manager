@@ -1,4 +1,4 @@
-const util = require('util')
+const util = require('util');
 const test = require('tape');
 const {
   checkMemberCredits,
