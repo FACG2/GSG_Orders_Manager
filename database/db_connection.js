@@ -2,7 +2,6 @@ const { Pool } = require ('pg');
 const env = require('env2')
 env('./config.env');
 const pool = new Pool ({ connectionString: process.env.DB_URL });
-module.exports = pool;
 switch (process.env.NODE_ENV) {
   case 'production':
     env={
@@ -19,3 +18,4 @@ switch (process.env.NODE_ENV) {
 if (!process.env.DB_URL) {
   throw new Error ('No database url provided')
 }
+module.exports = pool;
