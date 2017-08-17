@@ -122,8 +122,8 @@ const checkOrderList = (today, cb) =>{
 
 const createOrderList = (today, cb) =>{
   const sql = {
-    text: 'INSERT INTO order_list (state, total, dman_id, dateorder) VALUES ($1, $2, $3, $4);',
-    values: [true, 0, genarateDmanId(), new Date().format('mm-dd')]
+    text: 'SELECT * FROM order_pp WHERE orderlist=$1',
+    values: [orderListId]
   }
   client.query(sql ,(err ,data)=>{
     if (err) {
