@@ -11,7 +11,7 @@ switch (process.env.NODE_ENV) {
     break;
     case 'test':
     env={
-    process.env.DB_URL:localhost;
+    process.env.DB_URL:'postgres://postgres:admin@localhost:5432/gsglocal';
     }
     break;
 }
